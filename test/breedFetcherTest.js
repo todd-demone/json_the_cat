@@ -3,7 +3,7 @@ const { assert } = require('chai');
 
 describe("#fetchBreedDescription", () => {
   it(
-    'returns a string description for a valid breed, via callback', 
+    'returns a string description for a valid breed, via callback',
     (done) => {
       fetchBreedDescription(
         'Siberian',
@@ -20,13 +20,13 @@ describe("#fetchBreedDescription", () => {
   );
 
   it(
-    "returns a 'sorry' message for  an invalid/nonexistent breed, via callback", 
+    "returns a 'sorry' message for  an invalid/nonexistent breed, via callback",
     (done) => {
       fetchBreedDescription(
         'asdfasdf',
         (err, desc) => {
           assert.equal(desc, null);
-          const expectedErr = `Sorry, asdfasdf is not a valid breed.`
+          const expectedErr = `Sorry, asdfasdf is not a valid breed.`;
           assert.equal(expectedErr, err);
           done();
         }
