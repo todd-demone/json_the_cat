@@ -6,15 +6,13 @@ const fetchBreedDescription = function(breedName, callback) {
     (error, _response, body) => {
       if (error) {
         callback(error, null);
+      // invalid/nonexistent breed
+      } else if (JSON.parse(body).length === 0) {
+        error = `Sorry, ${breedName} is not a valid breed.`
+        callback(error, null);
+      // valid breed request
       } else {
-        const data = JSON.parse(body);
-        let description;
-        if (data.length === 0) {
-          description = `Sorry, ${breedName} could not be found.`;
-        } else {
-          description = data[0].description;
-        }
-        callback(null, description);
+        callback(null, JSON.parse(body)[0].description);
       }
     }
   );
